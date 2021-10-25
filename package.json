@@ -1,0 +1,28 @@
+{
+  "name": "c-10-team-profile-generator",
+  "version": "1.0.0",
+  "description": "Challenge 10: Object-Oriented Programming Challenge: Team Profile Generator ## Description",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danster4/c-10-team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danster4/c-10-team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Danster4/c-10-team-profile-generator#readme"
+}
