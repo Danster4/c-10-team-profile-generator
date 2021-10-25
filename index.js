@@ -50,9 +50,34 @@ const managerQuestions = [
       }
     }
   },
+  {
+    type: 'input',
+    name: 'officeNumber',
+    message: 'Enter your team manager\'s office number',
+    validate: officeInput => {
+      if (officeInput) {
+        return true;
+      } else {
+        console.log("Please enter your team manager\'s office number!");
+        return false;
+      }
+    }
+  },
 ]
 
-const employeeQuestions = []
+const employeeQuestions = [
+  {
+    type: 'list',
+    name: 'addEmployee',
+    message: 'Would you like to add a new Employee to your team? (Engineer or Intern)',
+    choices: [
+      "Yes, please add an Engineer to my team",
+      "Yes, please add an Intern to my team",
+      "No, there are no more team members to add"
+    ]
+  }
+
+]
 
 const addManager = async() => {
   const result = await inquirer.prompt(managerQuestions)
