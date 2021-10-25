@@ -25,7 +25,7 @@ const managerQuestions = [
     }
   },
   {
-    type: 'input',
+    type: 'number',
     name: 'id',
     message: 'Enter your team manager\'s employee ID',
     validate: idInput => {
@@ -51,7 +51,7 @@ const managerQuestions = [
     }
   },
   {
-    type: 'input',
+    type: 'number',
     name: 'officeNumber',
     message: 'Enter your team manager\'s office number',
     validate: officeInput => {
@@ -77,6 +77,61 @@ const employeeQuestions = [
     ]
   }
 
+]
+
+const engineerQuestions = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'What is this engineer\'s name?',
+    validate: engineerNameInput => {
+      if (engineerNameInput) {
+        return true;
+      } else {
+        console.log("Please enter your engineer\'s name!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'number',
+    name: 'id',
+    message: 'Enter this engineer\'s employee ID',
+    validate: idInput => {
+      if (idInput) {
+        return true;
+      } else {
+        console.log("Please enter this engineer\'s employee ID!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Enter your team manager\'s email address',
+    validate: emailInput => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please enter your team manager\'s email address!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'github',
+    message: 'Enter this engineer\'s GitHub username',
+    validate: githubInput => {
+      if (githubInput) {
+        return true;
+      } else {
+        console.log("Please enter this engineer\'s GitHub username!");
+        return false;
+      }
+    }
+  },
 ]
 
 const addManager = async() => {
@@ -111,6 +166,18 @@ const addEmployee = async() => {
   })
 }
 
+const addEngineer = async() => {
+  const result = await inquirer.prompt(engineerQuestions)
+
+  const engineerOccurance = new Engineer(
+    result.name,
+    result.id,
+    result.email,
+    result.github
+  )
+  employeeBucket.push(engineerOccurance);
+  addEmployee();
+}
 
 
 
