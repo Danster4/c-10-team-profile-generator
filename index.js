@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const { writeFile, copyFile } = require('./utils/generate-site.js');
-const generatePage = require('./src/page-template.js')
-const Employee = require('./lib/Employee');
+const generatePage = require('./src/page-template.js');
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -134,6 +133,62 @@ const engineerQuestions = [
   },
 ]
 
+const internQuestions = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'What is this intern\'s name?',
+    validate: internNameInput => {
+      if (internNameInput) {
+        return true;
+      } else {
+        console.log("Please enter your intern\'s name!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'number',
+    name: 'id',
+    message: 'Enter this intern\'s employee ID',
+    validate: idInput => {
+      if (idInput) {
+        return true;
+      } else {
+        console.log("Please enter this intern\'s employee ID!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Enter your intern\'s email address',
+    validate: emailInput => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please enter your intern\'s email address!");
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'school',
+    message: 'Enter this intern\'s school name',
+    validate: schoolInput => {
+      if (schoolInput) {
+        return true;
+      } else {
+        console.log("Please enter this intern\'s school name!");
+        return false;
+      }
+    }
+  },
+]
+
+// addManager() function (a.k.a. intialize app function) prompts questions and creates new Manager object and adds to employeeBucket array
 const addManager = async() => {
   const result = await inquirer.prompt(managerQuestions)
   
@@ -147,6 +202,7 @@ const addManager = async() => {
   addEmployee();
 };
 
+// addEmployee() function acts as a switchboard to addEngineer(), addIntern(), and exiting inquirer and generatePage();
 const addEmployee = async() => {
   const result = await inquirer.prompt(employeeQuestions)
   .then(function(result) {
@@ -156,16 +212,17 @@ const addEmployee = async() => {
         break;
 
       case "Yes, please add an Intern to my team":
-      addIntern();
-      break;
+        addIntern();
+        break;
 
       case "No, there are no more team members to add":
-      generatePage();
-      break;
+        generatePage();
+        break;
     }
   })
 }
 
+// addEngineer() function prompts questions and creates new Engineer object and adds to employeeBucket array
 const addEngineer = async() => {
   const result = await inquirer.prompt(engineerQuestions)
 
@@ -179,10 +236,23 @@ const addEngineer = async() => {
   addEmployee();
 }
 
+// addIntern() function prompts questions and creates new Intern object and adds to employeeBucket array
+const addIntern = async() => {
+  const result = await inquirer.prompt(internQuestions)
+
+  const internOccurance = new Intern(
+    result.name,
+    result.id,
+    result.email,
+    result.school
+  )
+  employeeBucket.push(internOccurance)
+  addEmployee();
+}
 
 
 
 
 
-// call addManager function to start application
+// call addManager function to start/initialize CLI application
 addManager();
