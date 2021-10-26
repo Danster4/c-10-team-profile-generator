@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const { writeFile, copyFile } = require('./utils/generate-site.js');
-const generatePage = require('./src/page-template.js');
+const { writeFile } = require('./utils/generate-site.js');
+const pageTemplate = require('./src/page-template.js');
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -216,7 +215,7 @@ const addEmployee = async() => {
         break;
 
       case "No, there are no more team members to add":
-        generatePage();
+        writeFile(employeeBucket);
         break;
     }
   })
@@ -249,10 +248,6 @@ const addIntern = async() => {
   employeeBucket.push(internOccurance)
   addEmployee();
 }
-
-
-
-
 
 // call addManager function to start/initialize CLI application
 addManager();
