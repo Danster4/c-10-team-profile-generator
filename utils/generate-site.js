@@ -12,8 +12,6 @@ const writeFile = (data) => {
 
     // if everything went well, resolve the Promise and send the successful data to the '.then()' method
     else {
-      console.log(data)
-      
       console.log('File created! Inside the "dist" folder, your index.html file was created. Please open and enjoy your Team Profile website!')
     }
   })

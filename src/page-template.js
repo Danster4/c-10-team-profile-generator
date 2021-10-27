@@ -37,7 +37,6 @@ const pageTemplate = function(employeeBucket) {
     // })
 
       for (let i = 0; i < employeeBucket.length; i++) {
-        console.log("hi")
         employeeHtmlArray.push(employeeBucket[i].getHTML());
       }
 
